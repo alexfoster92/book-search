@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import SearchPage from './pages/searchPage.js';
+import BookDetailPage from "./pages/bookDetailPage";
 import './App.css';
 
-function App() {
+const NoMatchRoute = () => <div>404 Page</div>;
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={SearchPage} />
+        <Route path="/book/:bookId" exact component={BookDetailPage} />
+        <Route component={NoMatchRoute} />
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
